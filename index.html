@@ -1,31 +1,619 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>АЛИМБЕКОВ ЗАИРБЕК ТИЛЕБЕРДИЕВИЧ</title>
-  <style>
-    html,body { height:100%; margin:0; }
-    .pdfwrap { height:100vh; display:flex; flex-direction:column; }
-    .topbar { padding:8px; background:#111; color:#fff; display:flex; gap:8px; align-items:center; }
-    .viewer { flex:1; }
-    iframe,embed,object { width:100%; height:100%; border:0; }
-    .actions { margin-left:auto; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МИР КИНО — Истории, которые остаются с тобой</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="pdfwrap">
-    <div class="topbar">
-      <strong>Документ</strong>
-      <div class="actions">
-        <a href="АЛИМБЕКОВ ЗАИРБЕК ТИЛЕБЕРДИЕВИЧ.pdf" download>Скачать PDF</a>
+
+  <!-- ========== ШАПКА ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <div class="header__left">
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="#" class="logo">МИР КИНО</a>
+      </div>
+
+      <div class="header__center">
+        <form class="search" role="search" onsubmit="return false;">
+          <svg class="search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+          </svg>
+          <input type="search" class="search__input" placeholder="Название фильма, жанр или актёр" aria-label="Поиск по сайту">
+        </form>
+      </div>
+
+      <div class="header__right">
+        <a href="#schedule" class="header__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/>
+          </svg>
+          <span>Расписание</span>
+        </a>
+        <a href="#profile" class="header__profile" aria-label="Профиль">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
+          </svg>
+        </a>
       </div>
     </div>
+  </header>
 
-    <!-- Либо iframe, либо object/embed — оба нормально -->
-    <div class="viewer">
-      <iframe src="АЛИМБЕКОВ ЗАИРБЕК ТИЛЕБЕРДИЕВИЧ.pdf"></iframe>
+  <main>
+
+    <!-- ========== ГЛАВНЫЙ ЭКРАН С ВИДЕО ========== -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <!-- 
+          ВАЖНО: Замените путь к видео на свой файл.
+          Например: assets/video/cinema-night.mp4
+          Ниже указан демонстрационный источник (Pixabay / Coverr).
+        -->
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        >
+          <source src="https://cdn.coverr.co/videos/coverr-a-movie-theater-1573/1080p.mp4" type="video/mp4">
+          <!-- Резервный источник, если основной недоступен -->
+          <source src="https://cdn.pixabay.com/video/2023/03/14/154267-808452827_large.mp4" type="video/mp4">
+        </video>
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow">МИР КИНО</p>
+        <h1 class="hero__title">Истории,<br>которые остаются<br>с тобой</h1>
+        <p class="hero__desc">Кинематограф, который не отпускает. Откройте для себя фильмы, меняющие взгляд на мир.</p>
+        <div class="hero__actions">
+          <a href="#popular" class="btn btn--primary">Смотреть афишу</a>
+          <a href="#schedule" class="hero__secondary">Ближайшие сеансы →</a>
+        </div>
+      </div>
+
+      <p class="hero__scroll">Прокрутите, чтобы исследовать</p>
+    </section>
+
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ: ОТЗЫВЫ + ПОДБОРКИ ========== -->
+    <section class="main-content" id="reviews">
+      <div class="container main-content__grid">
+
+        <!-- ЛЕВАЯ КОЛОНКА: ОТЗЫВЫ -->
+        <aside class="reviews" aria-label="Отзывы зрителей">
+          <h2 class="section-title">Что говорят зрители</h2>
+          <div class="reviews__list">
+
+            <article class="review">
+              <div class="review__header">
+                <div class="review__poster">
+                  <img src="https://image.tmdb.org/t/p/w92/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Постер фильма «Дюна: Часть вторая»" width="46" height="69" loading="lazy">
+                </div>
+                <div>
+                  <h3 class="review__movie">Дюна: Часть вторая</h3>
+                  <div class="review__rating" aria-label="Оценка 5 из 5">★★★★★</div>
+                </div>
+              </div>
+              <p class="review__text">«Фильм, после которого ещё долго не отпускает атмосфера. Визуально невероятно.»</p>
+              <footer class="review__meta">
+                <span>Айгерим К.</span>
+                <time datetime="2026-03-12">12 марта 2026</time>
+              </footer>
+            </article>
+
+            <article class="review">
+              <div class="review__header">
+                <div class="review__poster">
+                  <img src="https://image.tmdb.org/t/p/w92/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Постер фильма «Оппенгеймер»" width="46" height="69" loading="lazy">
+                </div>
+                <div>
+                  <h3 class="review__movie">Оппенгеймер</h3>
+                  <div class="review__rating" aria-label="Оценка 4 из 5">★★★★☆</div>
+                </div>
+              </div>
+              <p class="review__text">«Мощно, интеллектуально и эмоционально. Обязательно к просмотру в кинотеатре.»</p>
+              <footer class="review__meta">
+                <span>Данияр М.</span>
+                <time datetime="2026-02-28">28 февраля 2026</time>
+              </footer>
+            </article>
+
+            <article class="review">
+              <div class="review__header">
+                <div class="review__poster">
+                  <img src="https://image.tmdb.org/t/p/w92/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg" alt="Постер фильма «Бедные-несчастные»" width="46" height="69" loading="lazy">
+                </div>
+                <div>
+                  <h3 class="review__movie">Бедные-несчастные</h3>
+                  <div class="review__rating" aria-label="Оценка 5 из 5">★★★★★</div>
+                </div>
+              </div>
+              <p class="review__text">«Смело, странно и прекрасно. Такого кино сейчас почти не снимают.»</p>
+              <footer class="review__meta">
+                <span>Алина Т.</span>
+                <time datetime="2026-01-15">15 января 2026</time>
+              </footer>
+            </article>
+
+            <article class="review">
+              <div class="review__header">
+                <div class="review__poster">
+                  <img src="https://image.tmdb.org/t/p/w92/7oE7nX6XH5x5x5x5x5x5x5.jpg" alt="Постер фильма «Прошлые жизни»" width="46" height="69" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 class="review__movie">Прошлые жизни</h3>
+                  <div class="review__rating" aria-label="Оценка 4 из 5">★★★★☆</div>
+                </div>
+              </div>
+              <p class="review__text">«Тихая, глубокая история о том, что могло бы быть. Очень личное кино.»</p>
+              <footer class="review__meta">
+                <span>Эрмек С.</span>
+                <time datetime="2025-12-03">3 декабря 2025</time>
+              </footer>
+            </article>
+
+          </div>
+        </aside>
+
+        <!-- ПРАВАЯ КОЛОНКА: ПОДБОРКИ -->
+        <div class="collections">
+
+          <!-- ПОПУЛЯРНОЕ -->
+          <section class="collection" id="popular">
+            <header class="collection__header">
+              <div>
+                <h2 class="section-title">Сейчас выбирают</h2>
+                <p class="section-subtitle">Фильмы, о которых говорят</p>
+              </div>
+            </header>
+            <div class="film-row" role="list">
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Постер фильма «Дюна: Часть вторая»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Пол Дюна, эпическая сага о власти, пророчестве и мести.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-dune" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Дюна: Часть вторая</h3>
+                  <p class="film-card__meta">2024 · Фантастика · 8.5</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Постер фильма «Оппенгеймер»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">История создателя атомной бомбы и моральной цены прогресса.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-oppenheimer" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Оппенгеймер</h3>
+                  <p class="film-card__meta">2023 · Биография · 8.9</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg" alt="Постер фильма «Бедные-несчастные»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Барочная фантазия о женщине, которая учится быть свободной.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-poor-things" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Бедные-несчастные</h3>
+                  <p class="film-card__meta">2023 · Драма · 8.1</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/7oE7nX6XH5x5x5x5x5x5x5.jpg" alt="Постер фильма «Прошлые жизни»" loading="lazy" onerror="this.src='https://image.tmdb.org/t/p/w342/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg'">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Нежная история о любви, времени и упущенных возможностях.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-past-lives" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Прошлые жизни</h3>
+                  <p class="film-card__meta">2023 · Мелодрама · 8.0</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Постер фильма «Барби»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Яркое, ироничное и неожиданно глубокое высказывание о роли женщины.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-barbie" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Барби</h3>
+                  <p class="film-card__meta">2023 · Комедия · 7.2</p>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+          <!-- ХЭЛЛОУИН / УЖАСЫ -->
+          <section class="collection collection--dark" id="horror">
+            <header class="collection__header">
+              <div>
+                <h2 class="section-title">Ночь принадлежит кино</h2>
+                <p class="section-subtitle">От психологических триллеров до историй, которые не отпускают</p>
+              </div>
+            </header>
+            <div class="film-row" role="list">
+
+              <article class="film-card film-card--dark" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="Постер фильма «Солнцестояние»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Шведский фестиваль, который превращается в кошмар наяву.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-midsommar" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Солнцестояние</h3>
+                  <p class="film-card__meta">2019 · Хоррор · 7.6</p>
+                </div>
+              </article>
+
+              <article class="film-card film-card--dark" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="Постер фильма «Реинкарнация»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Семейная трагедия, которая оборачивается древним злом.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-hereditary" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Реинкарнация</h3>
+                  <p class="film-card__meta">2018 · Хоррор · 7.9</p>
+                </div>
+              </article>
+
+              <article class="film-card film-card--dark" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="Постер фильма «Ведьма»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Медленный, атмосферный хоррор о пуританской семье и лесе.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-vvitch" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Ведьма</h3>
+                  <p class="film-card__meta">2015 · Хоррор · 7.4</p>
+                </div>
+              </article>
+
+              <article class="film-card film-card--dark" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg" alt="Постер фильма «Оно»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Классическая история о клоуне, который пробуждает детские страхи.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-it" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Оно</h3>
+                  <p class="film-card__meta">2017 · Хоррор · 7.3</p>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+          <!-- НАЦИОНАЛЬНОЕ КИНО -->
+          <section class="collection collection--warm" id="national">
+            <header class="collection__header">
+              <div>
+                <h2 class="section-title">Истории, близкие нам</h2>
+                <p class="section-subtitle">Откройте для себя национальный кинематограф</p>
+              </div>
+            </header>
+            <div class="film-row" role="list">
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/5x5x5x5x5x5x5x5x5x5x5x5x5.jpg" alt="Постер фильма «Джамиля»" loading="lazy" onerror="this.src='https://image.tmdb.org/t/p/w342/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg'">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Экранизация повести Чингиза Айтматова о любви и свободе.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-djamilia" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Джамиля</h3>
+                  <p class="film-card__meta">1969 · Драма · 8.2</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/5x5x5x5x5x5x5x5x5x5x5x5x5.jpg" alt="Постер фильма «Это то, что я помню»" loading="lazy" onerror="this.src='https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Тёплая и меланхоличная история о памяти и возвращении домой.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-remember" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Это то</, что я помню</h3>
+                  <pp class="film-card__meta">2023 · Драма ·>
+ 7.8                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/5x5x5x5x5x5x5x5x5x5x5x5x5.jpg" alt="Постер фильма «Бегущий к небу»" loading="lazy" onerror="this.src='https://image.tmdb.org/t/p/w342/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg'">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">История мальчика из горного села, который мечтает о большом забеге.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-running" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Бегущий к небу</h3>
+                  <p class="film-card__meta">2019 · Драма · 7.5</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/5x5x5x5x5x5x5x5x5x5x5x5x5.jpg" alt="Постер фильма «Небесный кочевник»" loading="lazy" onerror="this.src='https://image.tmdb.org/t/p/w342/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg'">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Тихое, визуально поэтичное кино о жизни в горах Кыргызстана.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-nomad" class="btn btn--small">Подробнее</a>
+                      <a href="#buy-ticket" class="btn btn--small btn--outline">Купить билет</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Небесный кочевник</h3>
+                  <p class="film-card__meta">2015 · Драма · 7.9</p>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+          <!-- СКОРО НА ЭКРАНАХ -->
+          <section class="collection" id="coming-soon">
+            <header class="collection__header">
+              <div>
+                <h2 class="section-title">Скоро на экранах</h2>
+                <p class="section-subtitle">Премьеры, которые мы ждём</p>
+              </div>
+            </header>
+            <div class="film-row" role="list">
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="Постер фильма «Дюна: Мессия»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Продолжение эпической саги. Премьера ожидается в 2026 году.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-dune-messiah" class="btn btn--small">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Дюна: Мессия</h3>
+                  <p class="film-card__meta">2026 · Фантастика · Ожидается</p>
+                </div>
+              </article>
+
+              <article class="film-card" role="listitem">
+                <div class="film-card__poster">
+                  <img src="https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="Постер фильма «Аватар 3»" loading="lazy">
+                  <div class="film-card__hover">
+                    <p class="film-card__hover-text">Новая глава Пандоры. Дата выхода уточняется.</p>
+                    <div class="film-card__actions">
+                      <a href="#film-avatar3" class="btn btn--small">Подробнее</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="film-card__info">
+                  <h3 class="film-card__title">Аватар 3</h3>
+                  <p class="film-card__meta">2026 · Фантастика · Ожидается</p>
+                </div>
+              </article>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== РАСПИСАНИЕ ========== -->
+    <section class="schedule section" id="schedule">
+      <div class="container">
+        <h2 class="section-title">Расписание сеансов</h2>
+        <p class="section-subtitle">Выберите удобный день и время</p>
+
+        <div class="schedule__dates">
+          <button class="date-btn date-btn--active" type="button">Сегодня, 24 окт</button>
+          <button class="date-btn" type="button">25 окт, сб</button>
+          <button class="date-btn" type="button">26 окт, вс</button>
+          <button class="date-btn" type="button">27 окт, пн</button>
+        </div>
+
+        <div class="schedule__list">
+          <article class="session">
+            <div class="session__film">
+              <h3 class="session__title">Дюна: Часть вторая</h3>
+              <p class="session__meta">Фантастика · 166 мин · 12+</p>
+            </div>
+            <div class="session__times">
+              <a href="#buy-ticket" class="time-btn">12:30 <span>IMAX</span></a>
+              <a href="#buy-ticket" class="time-btn">15:45 <span>2D</span></a>
+              <a href="#buy-ticket" class="time-btn">19:00 <span>IMAX</span></a>
+              <a href="#buy-ticket" class="time-btn">21:20 <span>2D</span></a>
+            </div>
+          </article>
+
+          <article class="session">
+            <div class="session__film">
+              <h3 class="session__title">Оппенгеймер</h3>
+              <p class="session__meta">Биография · 180 мин · 16+</p>
+            </div>
+            <div class="session__times">
+              <a href="#buy-ticket" class="time-btn">14:00 <span>2D</span></a>
+              <a href="#buy-ticket" class="time-btn">18:30 <span>IMAX</span></a>
+            </div>
+          </article>
+
+          <article class="session">
+            <div class="session__film">
+              <h3 class="session__title">Солнцестояние</h3>
+              <p class="session__meta">Хоррор · 148 мин · 18+</p>
+            </div>
+            <div class="session__times">
+              <a href="#buy-ticket" class="time-btn">20:15 <span>2D</span></a>
+              <a href="#buy-ticket" class="time-btn">22:40 <span>2D</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ПРОФИЛЬ И РЕГИСТРАЦИЯ (ДЕМО) ========== -->
+    <section class="profile section" id="profile">
+      <div class="container">
+        <h2 class="section-title">Профиль</h2>
+
+        <div class="profile__grid">
+
+          <!-- Вход / Регистрация -->
+          <div class="auth">
+            <h3 class="auth__title">Вход и регистрация</h3>
+            <form class="auth__form" onsubmit="return false;">
+              <div class="field">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
+              </div>
+              <div class="field">
+                <label for="password-confirm">Подтверждение пароля</label>
+                <input type="password" id="password-confirm" name="password-confirm" placeholder="••••••••" autocomplete="new-password">
+              </div>
+              <div class="auth__actions">
+                <button type="submit" class="btn btn--primary">Войти</button>
+                <button type="submit" class="btn btn--outline">Зарегистрироваться</button>
+              </div>
+              <a href="#" class="auth__forgot">Забыли пароль?</a>
+            </form>
+          </div>
+
+          <!-- История билетов и избранное -->
+          <div class="profile__details">
+            <h3 class="profile__subtitle">История билетов</h3>
+            <div class="ticket-list">
+              <div class="ticket">
+                <span class="ticket__film">Дюна: Часть вторая</span>
+                <span class="ticket__info">24 окт · 19:00 · IMAX · Ряд 7, место 12</span>
+              </div>
+              <div class="ticket">
+                <span class="ticket__film">Оппенгеймер</span>
+                <span class="ticket__info">18 окт · 18:30 · IMAX · Ряд 5, место 8</span>
+              </div>
+            </div>
+
+            <h3 class="profile__subtitle">Избранные фильмы</h3>
+            <ul class="favorites">
+              <li>Дюна: Часть вторая</li>
+              <li>Бедные-несчастные</li>
+              <li>Прошлые жизни</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== ФУТЕР ========== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__left">
+        <a href="#" class="logo logo--footer">МИР КИНО</a>
+        <nav class="footer__nav" aria-label="Юридическая информация">
+          <a href="#">О проекте</a>
+          <a href="#">Конфиденциальность</a>
+          <a href="#">Политика обработки данных</a>
+          <a href="#">Пользовательское соглашение</a>
+          <a href="#">Контакты</a>
+          <a href="#">Помощь</a>
+        </nav>
+        <p class="footer__copy">© 2026. Все права защищены.</p>
+      </div>
+
+      <div class="footer__right">
+        <h4 class="footer__heading">Создано командой</h4>
+        <ul class="footer__team">
+          <li><span>Азамат К.</span> — Frontend-разработчик · <a href="#" rel="noopener">GitHub</a></li>
+          <li><span>Мария С.</span> — UI/UX дизайнер · <a href="#" rel="noopener">Портфолио</a></li>
+          <li><span>Данияр Т.</span> — Product-менеджер · <a href="#" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </footer>
+
 </body>
 </html>
